@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Farmers Dashboard</title>
+	<link rel="stylesheet" href="../static/css/dashboard.css">
+</head>
+<body>
+    {% include 'NavBar.html' %}  
+	
+	<div class="alert alert-info" role="alert">
+		<h1 class="text-center"> Welcome {{name}}</h1>  
+	  </div>   
+	  <div class="container">
+    <a href="/crop_estimation" style="text-decoration:none;color: inherit;">
+      <div class="section" >
+        <h2>Cost Estimation</h2>
+        <p>Information on Cost Estimation of various Crops</p>
+      </div>
+    </a>
+    <a href="/crop_comparison" style="text-decoration:none;color: inherit;">
+		<div class="section">
+			<h2>Crop Comparison</h2>
+			<p>Information on Comparison between various Crops</p>
+		</div>
+    <a href="/crop_information" style="text-decoration:none;color: inherit;">
+		<div class="section">
+			<h2>Crop Information</h2>
+			<p>Crop Information about Planting and Soil Requirements  </p>
+		</div>
+  </a>
+  <a href="/SoilTypeAnalysis" style="text-decoration:none;color: inherit;">
+		<div class="section">
+			<h2>Soil Type Analysis</h2>
+			<p>Recommendation Based on Soil Type Analysis</p>
+		</div>
+		
+	</div>
+	<!-- <script src="script.js"></script> -->
+</body>
+</html>

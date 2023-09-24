@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cost Estimation</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		header {
+			background-color: #4CAF50;
+			color: white;
+			padding: 20px;
+			text-align: center;
+			font-size: 30px;
+			font-weight: bold;
+			margin-bottom: 50px;
+		}
+		form {
+			margin: 0 auto;
+			width: 80%;
+			max-width: 800px;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+		}
+		select {
+			font-size: 18px;
+			padding: 10px;
+			margin: 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #f5f5f5;
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+			cursor: pointer;
+		}
+		label {
+			font-size: 20px;
+			font-weight: bold;
+			margin-right: 10px;
+		}
+		button {
+			font-size: 18px;
+			padding: 10px;
+			margin: 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #4CAF50;
+			color: white;
+			cursor: pointer;
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+		}
+		table {
+			margin: 50px auto;
+			border-collapse: collapse;
+			width: 80%;
+			max-width: 800px;
+		}
+		th, td {
+			padding: 10px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+		tr:hover {
+			background-color: #f5f5f5;
+		}
+		th {
+			background-color: #4CAF50;
+			color: white;
+		}
+		h2 {
+			font-size: 24px;
+			font-weight: bold;
+			margin-top: 50px;
+		}
+		h3 {
+			font-size: 20px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	{% include 'NavBar.html' %}   
+	<header>Cost Estimation</header>
+	<form>
+		<label for="crop">Select Crop:</label>
+		<select id="crop" name="crop">
+			<option value="wheat">Wheat</option>
+			<option value="rice">Rice</option>
+			<option value="maize">Maize</option>
+			<option value="cotton">Cotton</option>
+			<option value="sugarcane">Sugarcane</option>
+			<option value="soybean">Soybean</option>
+			<option value="groundnut">Groundnut</option>
+			<option value="potato">Potato</option>
+			<option value="tomato">Tomato</option>
+			<option value="onion">Onion</option>
+			<option value="chilli">Chilli</option>
+			<option value="garlic">Garlic</option>
+			<option value="banana">Banana</option>
+			<option value="mango">Mango</option>
+		</select>
+		<br></br>
+		<button type="submit"> Estimate Cost</button>
+	</form>
+	<br></br>
+	<h2 class="text-center">Cost Estimate for Selected Crop:</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Item</th>
+				<th>Cost (INR)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Seed</td>
+				<td id="seed"></td>
+			</tr>
+			<tr>
+				<td>Fertilizer</td>
+				<td id="fertilizer"></td>
+			</tr>
+			<tr>
+				<td>Irrigation</td>
+				<td id="irrigation"></td>
+			</tr>
+			<tr>
+				<td>Labor</td>
+				<td id="labor"></td>
+			</tr>
+			<tr>
+				<td>Equipment</td>
+				<td id="equipment"></td>
+			</tr>
+			<tr>
+				<th>Total Cost</th>
+				<th id="total"></th>
+			</tr>
+		</tbody>
+	</table>
+	<script>
+		const cropSelect = document.getElementById("crop");
+		const seedCost = {
+			wheat: 1500,
+			rice: 2500,
+			maize: 1200,
+			cotton: 4000,
+			sugarcane: 3000,
+			soybean: 1800,
+			groundnut: 2200,
+			potato: 800,
+			tomato: 1200,
+			onion: 1000,
+			chilli: 1500,
+			garlic: 2000,
+			banana: 5000,
+			mango: 6000
+		};
+		const fertilizerCost = {
+			wheat: 2000,
+			rice: 3000,
+			maize: 1500,
+			cotton: 5000,
+			sugarcane: 3500,
+			soybean: 2200,
+			groundnut: 2500,
+			potato: 1000,
+			tomato: 1500,
+			onion: 1200,
+			chilli: 1800,
+			garlic: 2500,
+			banana: 6000,
+			mango: 7000
+		};
+		const irrigationCost = {
+			wheat: 5000,
+			rice: 10000,
+			maize: 7000,
+			cotton: 12000,
+			sugarcane: 9000,
+			soybean: 6000,
+			groundnut: 8000,
+			potato: 4000,
+			tomato: 5000,
+			onion: 5000,
+			chilli: 7000,
+			garlic: 9000,
+			banana: 12000,
+			mango: 15000
+		};
+		const laborCost = {
+			wheat: 3000,
+			rice: 5000,
+			maize: 2500,
+			cotton: 8000,
+			sugarcane: 6000,
+			soybean: 3500,
+			groundnut: 4000,
+			potato: 1500,
+			tomato: 2500,
+			onion: 2000,
+			chilli: 3000,
+			garlic: 4000,
+			banana: 10000,
+			mango: 12000
+		};
+		const equipmentCost = {
+			wheat: 15000,
+			rice: 30000,
+			maize: 20000,
+			cotton: 40000,
+			sugarcane: 25000,
+			soybean: 15000,
+			groundnut: 20000,
+			potato: 10000,
+			tomato: 12000,
+			onion: 15000,
+			chilli: 20000,
+			garlic: 25000,
+			banana: 50000,
+			mango: 60000
+		};
+		const totalCost = {
+			wheat: 0,
+			rice: 0,
+			maize: 0,
+			cotton: 0,
+			sugarcane: 0,
+			soybean: 0,
+			groundnut: 0,
+			potato: 0,
+			tomato: 0,
+			onion: 0,
+			chilli: 0,
+			garlic: 0,
+			banana: 0,
+			mango: 0
+		};
+
+		const form = document.querySelector("form");
+		const table = document.querySelector("table");
+
+		form.addEventListener("submit", function(event) {
+			event.preventDefault();
+			const crop = cropSelect.value.toLowerCase();
+			
+			const rowData = [
+				{ item: "Seed", cost: seedCost[crop] },
+				{ item: "Fertilizer", cost: fertilizerCost[crop] },
+				{ item: "Irrigation", cost: irrigationCost[crop] },
+				{ item: "Labor", cost: laborCost[crop] },
+				{ item: "Equipment", cost: equipmentCost[crop] }
+			];
+
+			// Calculate total cost
+			totalCost[crop] = rowData.reduce((acc, { cost }) => acc + cost, 0);
+			
+			// Remove existing table rows
+			while (table.rows.length > 1) {
+				table.deleteRow(1);
+			}
+
+			// Insert new table rows with updated values
+			rowData.forEach(({ item, cost }) => {
+				const newRow = table.insertRow();
+				const itemCell = newRow.insertCell();
+				const costCell = newRow.insertCell();
+
+				itemCell.textContent = item;
+				costCell.textContent = cost;
+
+				itemCell.style.fontWeight = "bold";
+				costCell.style.textAlign = "right";
+			});
+
+			// Add row for total cost
+			const totalRow = table.insertRow();
+			const totalLabelCell = totalRow.insertCell();
+			const totalCostCell = totalRow.insertCell();
+
+			totalLabelCell.textContent = "Total Cost";
+			totalCostCell.textContent = totalCost[crop];
+
+			totalLabelCell.style.fontWeight = "bold";
+			totalCostCell.style.fontWeight = "bold";
+			totalCostCell.style.textAlign = "right";
+		});
+	</script>

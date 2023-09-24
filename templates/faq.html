@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>FAQ</title>
+    <link rel="stylesheet" href="../static/css/stylee.css">
+    </head>
+  <body>
+    {% include 'NavBar.html' %}   
+    <h1>Frequently Asked Questions</h1>
+    
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Search for a question or keyword...">
+      <button id="search-btn">Search</button>
+    </div>
+    {% for q in faq%}
+    <div class="accordion">
+      <div class="accordion-item" id="blight">
+        <div class="accordion-header">
+          <h3>{{ q.Question }}</h3>
+        </div>
+        <div class="accordion-content">
+          <p>{{ q.Answer }}</p>
+        </div>
+      </div>    
+      {% endfor %}
+
+    
+       
+    </div>
+  <script src="../static/js/scriptt.js"></script>
+</body>
+</html>
+  

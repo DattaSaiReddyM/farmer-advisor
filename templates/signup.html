@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Crop Selection Sign Up</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('https://www.world-grain.com/ext/resources/Article-Images/2019/06-June/Corn_photo-cred-Adobestock_E.jpg?1559829447');
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
+      
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+      }
+      
+      form {
+        margin: 50px auto;
+        max-width: 500px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+      
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+      
+      .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+    </style>
+    <script>
+      function validateForm() {
+        var name = document.forms["signup"]["name"].value;
+        var email = document.forms["signup"]["email"].value;
+        var password = document.forms["signup"]["password"].value;
+        var location = document.forms["signup"]["location"].value;
+        var season = document.forms["signup"]["season"].value;
+        var phno = document.forms["signup"]["phno"].value;
+        
+        if (name == "" || email == "" || password == "" || location == "" || season == "" || phno == "") {
+          alert("All fields are required.");
+          return false;
+        }
+        
+        var emailRegex = /^\S+@\S+\.\S+$/;
+        if (!emailRegex.test(email)) {
+          alert("Please enter a valid email address.");
+          return false;
+        }
+        
+        var passwordRegex = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+        if (!passwordRegex.test(password)) {
+          alert("Submitted Successfully");
+          return false;
+        }
+        
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    {% include 'NavBar.html' %}   
+    <h1>Crop Selection Sign Up</h1>
+    <form name="signup" form action="/signup" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <label for="location">Location:</label>
+      <select id="location" name="location" required>
+        <option value="">Select a location</option>
+        <option value="North">North</option>
+        <option value="South">South</option>
+        <option value="East">East</option>
+        <option value="West">West</option>
+      </select>
+      <br></br>
+      <label for="season">Growing Season:</label>
+      <select id="season" name="season" required>
+        <option value="">Select a growing season</option>
+        <option value="Summer">Summer</option>
+        <option value="Winter">Winter</option>
+        <option value="Monsoon">Monsoon</option>
+      </select>
+      
+      <br></br>
+      <label for="phno">Phone: +91 </label>
+      <input type="number" id="phno" name="phno" required>
+      
+      <input type="submit" value="Submit">
+    </form>
+      </body>
+    </html>

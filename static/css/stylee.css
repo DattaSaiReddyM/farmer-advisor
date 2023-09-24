@@ -1,0 +1,72 @@
+
+body {
+    
+    background-image: url('https://images.pexels.com/photos/4530822/pexels-photo-4530822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+  
+    font-family: Arial, sans-serif;
+  
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  #search-bar {
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    width: 300px;
+  }
+  
+  #search-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+  }
+  
+  .accordion {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .accordion-item {
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .accordion-header:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .accordion-content {
+    display: none;
+    padding: 10px;
+  }
+  
+  .accordion-item.active .accordion-content {
+    display: block;
+  }
+  
